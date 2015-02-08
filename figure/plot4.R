@@ -5,8 +5,8 @@ plot4 <- function() {
     filename <- "household_power_consumption.txt"
     
     # download and extract data set
-    download.file(fileUrl, destfile = zipFileName, method = "curl")
-    unzip(zipfile = zipFileName, overwrite = TRUE )
+#     download.file(fileUrl, destfile = zipFileName, method = "curl")
+#     unzip(zipfile = zipFileName, overwrite = TRUE )
     
     # read only the data that falls within the range
     dataTable <- read.table(text = grep("^[1,2]/2/2007", readLines(filename), value = TRUE), 
@@ -25,13 +25,13 @@ plot4 <- function() {
 
     # render 4 plots
     with(dataTable, {
-        plot( DateTime, Global_active_power, type = "l", ylab="Global Active Power (kilowatts)", xlab="")
+        plot( DateTime, Global_active_power, type = "l", ylab="Global Active Power", xlab="")
         plot( DateTime, Voltage, type = "l", ylab="Voltage", xlab="datetime")
         plot( DateTime, Sub_metering_1, type = "n", ylab="Energy sub metering", xlab="")
             with(dataTable, points( DateTime, Sub_metering_1, type = "l", col = "black"))
             with(dataTable, points( DateTime, Sub_metering_2, type = "l", col = "red"))
             with(dataTable, points( DateTime, Sub_metering_3, type = "l", col = "blue"))
-            legend("topright", col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=c(1,1,1))
+            legend("topright", col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=c(1,1,1), bty = "n")
             plot( DateTime, Global_reactive_power, type = "l", xlab="datetime")
     })
     
