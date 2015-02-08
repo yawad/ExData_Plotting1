@@ -5,8 +5,8 @@ plot4 <- function() {
     filename <- "household_power_consumption.txt"
     
     # download and extract data set
-#     download.file(fileUrl, destfile = zipFileName, method = "curl")
-#     unzip(zipfile = zipFileName, overwrite = TRUE )
+    download.file(fileUrl, destfile = zipFileName, method = "curl")
+    unzip(zipfile = zipFileName, overwrite = TRUE )
     
     # read only the data that falls within the range
     dataTable <- read.table(text = grep("^[1,2]/2/2007", readLines(filename), value = TRUE), 
